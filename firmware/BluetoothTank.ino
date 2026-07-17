@@ -1,5 +1,4 @@
 #include <ctype.h>
-#include <arduino.h>
 
 // LED Pin Definitions
 const int leftMotorForward = 2;
