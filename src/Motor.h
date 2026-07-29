@@ -3,10 +3,11 @@
 
 void motorInit();
 
+void moveForward(uint8_t speed);
+void moveBackward(uint8_t speed);
+void turnLeft(uint8_t speed);
+void turnRight(uint8_t speed);
+
 void stopMotors();
-void moveForward();
-void moveBackward();
-void turnLeft();
-void turnRight();
 
 #endif

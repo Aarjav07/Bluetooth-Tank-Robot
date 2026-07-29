@@ -10,6 +10,8 @@ constexpr uint8_t ENB = 5;
 constexpr uint8_t IN3 = 12;
 constexpr uint8_t IN4 = 13;
 
+constexpr uint8_t DEFAULT_SPEED = 255;
+
 // Bluetooth Commands
 constexpr char CMD_FORWARD  = 'W';
 constexpr char CMD_BACKWARD = 'S';

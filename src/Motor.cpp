@@ -29,10 +29,10 @@ void stopMotors()
     digitalWrite(IN4, LOW);
 }
 
-void moveForward()
+void moveForward(uint8_t speed)
 {
-    analogWrite(ENA, 255);
-    analogWrite(ENB, 255);
+    analogWrite(ENA, speed);
+    analogWrite(ENB, speed);
     
     digitalWrite(IN1, HIGH); 
     digitalWrite(IN2, LOW); 
@@ -41,10 +41,10 @@ void moveForward()
     digitalWrite(IN4, LOW);
 }
 
-void moveBackward()
+void moveBackward(uint8_t speed)
 {
-    analogWrite(ENA, 255); 
-    analogWrite(ENB, 255); 
+    analogWrite(ENA, speed); 
+    analogWrite(ENB, speed); 
     
     digitalWrite(IN1, LOW); 
     digitalWrite(IN2, HIGH); 
@@ -53,10 +53,10 @@ void moveBackward()
     digitalWrite(IN4, HIGH);
 }
 
-void turnLeft()
+void turnLeft(uint8_t speed)
 {
-    analogWrite(ENA, 255); 
-    analogWrite(ENB, 255); 
+    analogWrite(ENA, speed); 
+    analogWrite(ENB, speed); 
     
     digitalWrite(IN1, LOW); 
     digitalWrite(IN2, HIGH); 
@@ -65,10 +65,10 @@ void turnLeft()
     digitalWrite(IN4, LOW);
 }
 
-void turnRight()
+void turnRight(uint8_t speed)
 {
-    analogWrite(ENA, 255); 
-    analogWrite(ENB, 255); 
+    analogWrite(ENA, speed); 
+    analogWrite(ENB, speed); 
     
     digitalWrite(IN1, HIGH); 
     digitalWrite(IN2, LOW); 

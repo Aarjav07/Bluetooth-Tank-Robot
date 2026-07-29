@@ -5,10 +5,21 @@
 #include "Config.h"
 
 static RobotState currentState = RobotState::STOPPED;
+static uint8_t currentSpeed = DEFAULT_SPEED;
 
 RobotState getRobotState()
 {
     return currentState;
+}
+
+void setSpeed(uint8_t speed)
+{
+    currentSpeed = speed;
+}
+
+uint8_t getSpeed()
+{
+    return currentSpeed;
 }
 
 void robotInit()
@@ -23,7 +34,7 @@ void processCommand(char command)
         case CMD_FORWARD:
             if (currentState != RobotState::FORWARD)
             {
-            moveForward();
+            moveForward(getSpeed());
             currentState = RobotState::FORWARD;
 
             Serial.println("[Robot] Moving Forward");
@@ -33,7 +44,7 @@ void processCommand(char command)
         case CMD_BACKWARD:
             if (currentState != RobotState::BACKWARD)
             {
-            moveBackward();
+            moveBackward(getSpeed());
             currentState = RobotState::BACKWARD;
 
             Serial.println("[Robot] Moving Backward");
@@ -43,7 +54,7 @@ void processCommand(char command)
         case CMD_LEFT:
             if (currentState != RobotState::LEFT)
             {
-            turnLeft();
+            turnLeft(getSpeed());
             currentState = RobotState::LEFT;
 
             Serial.println("[Robot] Turning Left");
@@ -53,7 +64,7 @@ void processCommand(char command)
         case CMD_RIGHT:
             if (currentState != RobotState::RIGHT)
             {
-            turnRight();
+            turnRight(getSpeed());
             currentState = RobotState::RIGHT;
 
             Serial.println("[Robot] Turning Right");

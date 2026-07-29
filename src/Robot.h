@@ -16,4 +16,8 @@ void processCommand(char command);
 
 RobotState getRobotState();
 
+void setSpeed(uint8_t speed);
+
+uint8_t getSpeed();
+
 #endif
