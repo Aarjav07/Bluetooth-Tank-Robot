@@ -30,4 +30,10 @@ bool isSpeedCommand(char command);
 
 void applyCurrentMovement();
 
+void printRobotStatus();
+
+bool isDiagnosticCommand(char command);
+
+void handleDiagnosticCommand(char command);
+
 #endif

@@ -17,7 +17,10 @@ constexpr char CMD_FORWARD  = 'W';
 constexpr char CMD_BACKWARD = 'S';
 constexpr char CMD_LEFT     = 'A';
 constexpr char CMD_RIGHT    = 'D';
+
 constexpr char CMD_STOP     = 'B';
+
+constexpr char CMD_STATUS   = 'P';
 
 // Speed Commands
 constexpr char CMD_SPEED_25  = '1';

@@ -37,6 +37,10 @@ void processCommand(char command)
     {
         handleSpeedCommand(command);
     }
+    else if (isDiagnosticCommand(command))
+    {
+        handleDiagnosticCommand(command);
+    }
     else
     {
         Serial.print("[Robot] Unknown command: ");
@@ -172,4 +176,59 @@ void applyCurrentMovement()
             // Nothing to update
             break;
     }
+}
+
+bool isDiagnosticCommand(char command)
+{
+    return command == CMD_STATUS;
+}
+
+void handleDiagnosticCommand(char command)
+{
+    switch (command)
+    {
+        case CMD_STATUS:
+            printRobotStatus();
+            break;
+
+        default:
+            break;
+    }
+}
+
+void printRobotStatus()
+{
+    Serial.println();
+    Serial.println("========== ROBOT STATUS ==========");
+
+    Serial.print("State : ");
+
+    switch (currentState)
+    {
+        case RobotState::STOPPED:
+            Serial.println("STOPPED");
+            break;
+
+        case RobotState::FORWARD:
+            Serial.println("FORWARD");
+            break;
+
+        case RobotState::BACKWARD:
+            Serial.println("BACKWARD");
+            break;
+
+        case RobotState::LEFT:
+            Serial.println("LEFT");
+            break;
+
+        case RobotState::RIGHT:
+            Serial.println("RIGHT");
+            break;
+    }
+
+    Serial.print("Speed : ");
+    Serial.println(getSpeed());
+
+    Serial.println("==================================");
+    Serial.println();
 }
