@@ -23,5 +23,6 @@ void loop()
         char command = readBluetoothCommand();
         processCommand(command);
     }
-    
+
+    checkBluetoothTimeout();   
 }

@@ -34,4 +34,7 @@ constexpr uint8_t SPEED_50_PWM  = 128;
 constexpr uint8_t SPEED_75_PWM  = 192;
 constexpr uint8_t SPEED_100_PWM = 255;
 
+// Safety Configuration
+constexpr unsigned long BLUETOOTH_TIMEOUT_MS = 500;
+
 #endif

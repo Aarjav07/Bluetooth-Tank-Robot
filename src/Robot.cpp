@@ -21,6 +21,7 @@ const CommandGroup commandGroups[] =
 
 static RobotState currentState = RobotState::STOPPED;
 static uint8_t currentSpeed = DEFAULT_SPEED;
+static unsigned long lastCommandTime = 0;
 
 RobotState getRobotState()
 {
@@ -39,11 +40,20 @@ uint8_t getSpeed()
 
 void robotInit()
 {
+     lastCommandTime = millis();
+
     Serial.println("[Robot] Initialized");
+}
+
+void updateCommandTimestamp()
+{
+    lastCommandTime = millis();
 }
 
 void processCommand(char command)
 {
+    updateCommandTimestamp();
+
     for (const auto& group : commandGroups)
     {
         if (group.matcher(command))
@@ -240,4 +250,20 @@ void printRobotStatus()
 
     Serial.println("==================================");
     Serial.println();
+}
+
+void checkBluetoothTimeout()
+{
+    if (currentState == RobotState::STOPPED)
+    {
+        return;
+    }
+
+    if (millis() - lastCommandTime >= BLUETOOTH_TIMEOUT_MS)
+    {
+        stopMotors();
+        currentState = RobotState::STOPPED;
+
+        Serial.println("[Robot] Bluetooth Timeout - Emergency Stop");
+    }
 }

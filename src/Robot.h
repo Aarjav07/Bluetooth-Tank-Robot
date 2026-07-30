@@ -42,4 +42,8 @@ bool isDiagnosticCommand(char command);
 
 void handleDiagnosticCommand(char command);
 
+void updateCommandTimestamp();
+
+void checkBluetoothTimeout();
+
 #endif
