@@ -4,6 +4,21 @@
 #include "Motor.h"
 #include "Config.h"
 
+bool isMovementCommand(char command);
+bool isSpeedCommand(char command);
+bool isDiagnosticCommand(char command);
+
+void handleMovementCommand(char command);
+void handleSpeedCommand(char command);
+void handleDiagnosticCommand(char command);
+
+const CommandGroup commandGroups[] =
+{
+    { isMovementCommand,   handleMovementCommand },
+    { isSpeedCommand,      handleSpeedCommand },
+    { isDiagnosticCommand, handleDiagnosticCommand }
+};
+
 static RobotState currentState = RobotState::STOPPED;
 static uint8_t currentSpeed = DEFAULT_SPEED;
 
@@ -29,23 +44,17 @@ void robotInit()
 
 void processCommand(char command)
 {
-    if (isMovementCommand(command))
+    for (const auto& group : commandGroups)
     {
-        handleMovementCommand(command);
+        if (group.matcher(command))
+        {
+            group.handler(command);
+            return;
+        }
     }
-    else if (isSpeedCommand(command))
-    {
-        handleSpeedCommand(command);
-    }
-    else if (isDiagnosticCommand(command))
-    {
-        handleDiagnosticCommand(command);
-    }
-    else
-    {
-        Serial.print("[Robot] Unknown command: ");
-        Serial.println(command);
-    }
+
+    Serial.print("[Robot] Unknown command: ");
+    Serial.println(command);
 }
 
 bool isMovementCommand(char command)

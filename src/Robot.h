@@ -20,6 +20,12 @@ void setSpeed(uint8_t speed);
 
 uint8_t getSpeed();
 
+struct CommandGroup
+{
+    bool (*matcher)(char);
+    void (*handler)(char);
+};
+
 void handleMovementCommand(char command);
 
 void handleSpeedCommand(char command);
