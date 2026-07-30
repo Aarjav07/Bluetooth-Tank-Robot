@@ -18,10 +18,10 @@ void setup()
 
 void loop()
 {
-     if (bluetoothAvailable())
+    if (bluetoothAvailable())
     {
         char command = readBluetoothCommand();
-
         processCommand(command);
     }
+    
 }

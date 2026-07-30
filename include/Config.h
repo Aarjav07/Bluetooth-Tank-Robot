@@ -19,4 +19,10 @@ constexpr char CMD_LEFT     = 'A';
 constexpr char CMD_RIGHT    = 'D';
 constexpr char CMD_STOP     = 'B';
 
+// Speed Commands
+constexpr char CMD_SPEED_25  = '1';
+constexpr char CMD_SPEED_50  = '2';
+constexpr char CMD_SPEED_75  = '3';
+constexpr char CMD_SPEED_100 = '4';
+
 #endif

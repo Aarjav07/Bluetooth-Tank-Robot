@@ -20,4 +20,12 @@ void setSpeed(uint8_t speed);
 
 uint8_t getSpeed();
 
+void handleMovementCommand(char command);
+
+void handleSpeedCommand(char command);
+
+bool isMovementCommand(char command);
+
+bool isSpeedCommand(char command);
+
 #endif
