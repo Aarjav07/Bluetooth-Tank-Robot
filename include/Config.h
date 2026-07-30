@@ -25,4 +25,10 @@ constexpr char CMD_SPEED_50  = '2';
 constexpr char CMD_SPEED_75  = '3';
 constexpr char CMD_SPEED_100 = '4';
 
+// Speed PWM Commands
+constexpr uint8_t SPEED_25_PWM  = 64;
+constexpr uint8_t SPEED_50_PWM  = 128;
+constexpr uint8_t SPEED_75_PWM  = 192;
+constexpr uint8_t SPEED_100_PWM = 255;
+
 #endif

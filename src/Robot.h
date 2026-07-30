@@ -28,4 +28,6 @@ bool isMovementCommand(char command);
 
 bool isSpeedCommand(char command);
 
+void applyCurrentMovement();
+
 #endif

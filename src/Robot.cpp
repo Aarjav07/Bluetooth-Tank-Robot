@@ -120,26 +120,56 @@ void handleSpeedCommand(char command)
     switch(command)
     {
         case CMD_SPEED_25:
-            setSpeed(64);
+            setSpeed(SPEED_25_PWM);
+            applyCurrentMovement();
             Serial.println("[Robot] Speed set to 25%");
             break;
 
         case CMD_SPEED_50:
-            setSpeed(128);
+            setSpeed(SPEED_50_PWM);
+            applyCurrentMovement();
             Serial.println("[Robot] Speed set to 50%");
             break;
 
         case CMD_SPEED_75:
-            setSpeed(192);
+            setSpeed(SPEED_75_PWM);
+            applyCurrentMovement();
             Serial.println("[Robot] Speed set to 75%");
             break;
 
         case CMD_SPEED_100:
-            setSpeed(255);
+            setSpeed(SPEED_100_PWM);
+            applyCurrentMovement();
             Serial.println("[Robot] Speed set to 100%");
             break;
 
         default:
+            break;
+    }
+}
+
+void applyCurrentMovement()
+{
+    switch (currentState)
+    {
+        case RobotState::FORWARD:
+            moveForward(getSpeed());
+            break;
+
+        case RobotState::BACKWARD:
+            moveBackward(getSpeed());
+            break;
+
+        case RobotState::LEFT:
+            turnLeft(getSpeed());
+            break;
+
+        case RobotState::RIGHT:
+            turnRight(getSpeed());
+            break;
+
+        case RobotState::STOPPED:
+            // Nothing to update
             break;
     }
 }
