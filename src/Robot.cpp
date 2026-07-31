@@ -3,6 +3,7 @@
 #include "Robot.h"
 #include "Motor.h"
 #include "Config.h"
+#include "Timer.h"
 
 bool isMovementCommand(char command);
 bool isSpeedCommand(char command);
@@ -40,14 +41,14 @@ uint8_t getSpeed()
 
 void robotInit()
 {
-     lastCommandTime = millis();
+     timerStart(lastCommandTime);
 
     Serial.println("[Robot] Initialized");
 }
 
 void updateCommandTimestamp()
 {
-    lastCommandTime = millis();
+    timerStart(lastCommandTime);
 }
 
 void processCommand(char command)
@@ -259,7 +260,7 @@ void checkBluetoothTimeout()
         return;
     }
 
-    if (millis() - lastCommandTime >= BLUETOOTH_TIMEOUT_MS)
+    if (timerExpired(lastCommandTime, BLUETOOTH_TIMEOUT_MS))
     {
         stopMotors();
         currentState = RobotState::STOPPED;
