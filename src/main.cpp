@@ -4,16 +4,19 @@
 #include "Motor.h"
 #include "Bluetooth.h"
 #include "Robot.h"
+#include "Logger.h"
 
 void setup()
 {
     Serial.begin(9600);
 
+    loggerInit();
+
     motorInit();
     bluetoothInit();
     robotInit();
 
-    Serial.println("Robot Started");
+    logInfo("Robot Started");
 }
 
 void loop()

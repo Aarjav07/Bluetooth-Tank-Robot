@@ -2,6 +2,7 @@
 #include <SoftwareSerial.h>
 
 #include "Bluetooth.h"
+#include "Logger.h"
 
 SoftwareSerial bluetooth(10, 11);
 
@@ -9,7 +10,7 @@ void bluetoothInit()
 {
     bluetooth.begin(9600);
 
-    Serial.println("[Bluetooth] Initialized");
+    logInfo("[Bluetooth] Initialized");
 }
 
 bool bluetoothAvailable()

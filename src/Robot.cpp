@@ -4,6 +4,7 @@
 #include "Motor.h"
 #include "Config.h"
 #include "Timer.h"
+#include "Logger.h"
 
 bool isMovementCommand(char command);
 bool isSpeedCommand(char command);
@@ -43,7 +44,7 @@ void robotInit()
 {
      timerStart(lastCommandTime);
 
-    Serial.println("[Robot] Initialized");
+    logInfo("[Robot] Initialized");
 }
 
 void updateCommandTimestamp()
@@ -86,7 +87,7 @@ void handleMovementCommand(char command)
             {
                 moveForward(getSpeed());
                 currentState = RobotState::FORWARD;
-                Serial.println("[Robot] Moving Forward");
+                logInfo("[Robot] Moving Forward");
             }
             break;
 
@@ -95,7 +96,7 @@ void handleMovementCommand(char command)
             {
                 moveBackward(getSpeed());
                 currentState = RobotState::BACKWARD;
-                Serial.println("[Robot] Moving Backward");
+                logInfo("[Robot] Moving Backward");
             }
             break;
 
@@ -104,7 +105,7 @@ void handleMovementCommand(char command)
             {
                 turnLeft(getSpeed());
                 currentState = RobotState::LEFT;
-                Serial.println("[Robot] Turning Left");
+                logInfo("[Robot] Turning Left");
             }
             break;
 
@@ -113,7 +114,7 @@ void handleMovementCommand(char command)
             {
                 turnRight(getSpeed());
                 currentState = RobotState::RIGHT;
-                Serial.println("[Robot] Turning Right");
+                logInfo("[Robot] Turning Right");
             }
             break;
 
@@ -122,7 +123,7 @@ void handleMovementCommand(char command)
             {
                 stopMotors();
                 currentState = RobotState::STOPPED;
-                Serial.println("[Robot] Stopped");
+                logInfo("[Robot] Stopped");
             }
             break;
 
@@ -146,25 +147,25 @@ void handleSpeedCommand(char command)
         case CMD_SPEED_25:
             setSpeed(SPEED_25_PWM);
             applyCurrentMovement();
-            Serial.println("[Robot] Speed set to 25%");
+            logInfo("[Robot] Speed set to 25%");
             break;
 
         case CMD_SPEED_50:
             setSpeed(SPEED_50_PWM);
             applyCurrentMovement();
-            Serial.println("[Robot] Speed set to 50%");
+            logInfo("[Robot] Speed set to 50%");
             break;
 
         case CMD_SPEED_75:
             setSpeed(SPEED_75_PWM);
             applyCurrentMovement();
-            Serial.println("[Robot] Speed set to 75%");
+            logInfo("[Robot] Speed set to 75%");
             break;
 
         case CMD_SPEED_100:
             setSpeed(SPEED_100_PWM);
             applyCurrentMovement();
-            Serial.println("[Robot] Speed set to 100%");
+            logInfo("[Robot] Speed set to 100%");
             break;
 
         default:
@@ -226,23 +227,23 @@ void printRobotStatus()
     switch (currentState)
     {
         case RobotState::STOPPED:
-            Serial.println("STOPPED");
+            logInfo("STOPPED");
             break;
 
         case RobotState::FORWARD:
-            Serial.println("FORWARD");
+            logInfo("FORWARD");
             break;
 
         case RobotState::BACKWARD:
-            Serial.println("BACKWARD");
+            logInfo("BACKWARD");
             break;
 
         case RobotState::LEFT:
-            Serial.println("LEFT");
+            logInfo("LEFT");
             break;
 
         case RobotState::RIGHT:
-            Serial.println("RIGHT");
+            logInfo("RIGHT");
             break;
     }
 
@@ -265,6 +266,6 @@ void checkBluetoothTimeout()
         stopMotors();
         currentState = RobotState::STOPPED;
 
-        Serial.println("[Robot] Bluetooth Timeout - Emergency Stop");
+        logWarning("[Robot] Bluetooth Timeout - Emergency Stop");
     }
 }
